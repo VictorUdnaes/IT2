@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oppgave 3_1</title>
+    <style>
+        #knapper {
+            display: flex;
+            flex-direction: row;
+            padding: 5px;
+        }
+        button {
+            height: 50px;
+            width: 90px;
+            margin-left: 5px;
+            background-color:lightgrey;
+            border-radius: 5px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h2>Velg muskelgruppe:</h2>
+    <div id="knapper">
+        <button id="Armer">Armer</button>
+        <button id="Skuldre">Skuldre</button>
+        <button id="Ben">Ben</button>
+        <button id="Rygg">Rygg</button>
+        <button id="Bryst">Bryst</button>
+    </div>
+    <br>
+    <div id="output">
+    </div>
+    <script>
+        var divEl = document.querySelector("#output");
+        var buttonArray = document.querySelectorAll("button");
+        var muskel = "";
+        var øvelse = "";
+        for (var i = 0; i<buttonArray.length; i++) {
+            buttonArray[i].addEventListener("click", finnØvelser);
+        }
+
+
+        var øvelser = [
+            {navn: "Armer", øvelseEn: "Bicepscurl med stang", øvelseTo: "Fransk press"},
+            {navn: "Skuldre", øvelseEn: "Stående militærpress", øvelseTo: "Sidehev"},
+            {navn: "Ben", øvelseEn: "Knebøy", øvelseTo: "Leg extension", øvelseTre:"Leg curl"},
+            {navn: "Rygg", øvelseEn: "Nedtrekk", øvelseTo: "Roing"},
+            {navn: "Bryst", øvelseEn: "Benkpress", øvelseTo: "Flies", øvelseTre:"Push up"}
+        ];
+
+        function finnØvelser(e) {
+            divEl.innerHTML = "";
+            var element = e.target;
+            var id = element.id;
+            muskel = id;
+            for (var i = 0; i<øvelser.length; i++) {
+                if (øvelser[i].navn == id) {
+                    var h2El = document.createElement("h2");
+                    h2El.innerHTML = "Velg en øvelse til " + element.id + ":";
+                    divEl.appendChild(h2El);
+                    
+                    var elementValues = Object.values(øvelser[i])
+                    for (var t = 1; t<elementValues.length; t++) {
+                            var buttonEl = document.createElement("button");
+                            buttonEl.innerHTML = elementValues[t];
+                            buttonEl.setAttribute("id", elementValues[t])
+                            divEl.appendChild(buttonEl);
+                            buttonEl.addEventListener("click", registrer);
+                    }
+                    
+                }
+            }
+        }
+
+        function registrer(e) {
+            øvelse = e.target.id;
+            var registrering = document.createElement("p");
+            registrering.innerHTML = "Muskelgruppe valgt: " + muskel + "<br>" + "Øvelse valgt: "+ øvelse;
+            divEl.appendChild(registrering);
+        }
+    </script>
+</body>
+</html>
