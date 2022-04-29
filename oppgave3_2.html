@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oppgave3_2</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        tr, th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        th {
+            background-color: lightblue;
+            border-bottom: 15px soldid aqua;
+            padding-left: 40px;
+            padding-right: 70px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registrering av treningsøkt:</h2>
+    <label for="reps">Antall reps: </label>
+        <input id="reps" type="number" name="reps">
+    <br>
+    <br>
+    <label for="motstand">Motstand: </label>
+        <input id="motstand" type="number" name="motstand">
+        <br><br>
+    <button id="registrerSett">Registrer sett</button>
+    <br> <br>
+    <table id="table">
+        <tr>
+            <th>Sett</th>
+            <th>Repetisjoner</th>
+            <th>Motstand</th>
+        </tr>
+        
+    </table>
+    <p>Treningsvolum: 0 kg</p>
+
+    <script>
+        var tabell = document.createElement("table");
+        var buttonEL = document.querySelector("button");
+        var pEL = document.querySelector("p");
+        var repsEl = document.querySelector("#reps");
+        var motstandEl = document.querySelector("#motstand");
+        var tableEl = document.querySelector("#table");
+        var sett = 0;
+        var treningsvolum = 0;
+
+        buttonEL.addEventListener("click", registrerØkt);
+
+        function registrerØkt() {
+            var repetisjoner = repsEl.value;
+            var motstand = motstandEl.value;
+            var row = document.createElement("tr");
+            var el1 = document.createElement("td");
+            var el2 = document.createElement("td");
+            var el3 = document.createElement("td");
+
+            sett++;
+            el1.innerHTML = sett + ". sett";
+            el2.innerHTML = repetisjoner;
+            el3.innerHTML = motstand;
+            treningsvolum += (repetisjoner * motstand);
+            pEL.innerHTML = "Treningsvolum: " + treningsvolum + " kg";
+            row.appendChild(el1);
+            row.appendChild(el2);
+            row.appendChild(el3);
+            tableEl.appendChild(row);
+        }
+
+    </script>
+</body>
+</html>
