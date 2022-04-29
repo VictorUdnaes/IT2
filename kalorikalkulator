@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muskler</title>
+
+    <style>
+        body{ 
+            font-family: inherit;
+            color: black;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #Svar {
+            border: 1px solid black;
+            padding: 5px;
+            height: 60px;
+        }
+        button{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+        <label for="aktivitet">Aktivitet</label>
+    <select id="aktivitet">
+        <option value="814">Aerobics</option>
+        <option value="236">Bordtennis</option>
+        <option value="510">Fotball</option>
+        <option value="510">Golf</option>
+        <option value="510">Jogging</option>
+       
+    </select>
+
+    <p> Velg intensitet </p>
+    <input type="radio" name="knapp" id="lav" value="0.8"> Lavt <br>
+    <input type="radio" name="knapp" id="medium" value="1" > Middels <br>
+    <input type="radio" name="knapp" id="hoy" value="1.2"> Hoyt <br>
+
+    <p>Oppgi varighet på trening</p>
+    <input type="number" id= "varighet" placeholder="Minutter"> <br>
+
+    <br> 
+    <button>Beregn Kaloriforbruk</button> 
+    <p id="Svar">Svar </p>
+
+    <script>
+    var aktivitet = document.querySelector("#aktivitet");
+    var lavIn = document.querySelector("#lav");
+    var mediumIn = document.querySelector("#medium");
+    var hoyIn = document.querySelector("#hoy");
+    var button = document.querySelector("button");
+    var Svar = document.querySelector("#Svar");
+    var varighet = document.querySelector("#varighet");
+
+    button.addEventListener("click",butt);
+
+    var intensitet = 0;
+
+    function butt(){
+    if (lavIn.checked) {
+        intensitet = lavIn.value;
+    }
+    else if (mediumIn.checked) {
+        intensitet = mediumIn.value;
+    }
+    else if (hoyIn.checked) {
+         intensitet = hoyIn.value; }
+
+    Svar.innerHTML = "Svar: " + (Number(aktivitet.value) * intensitet) * (varighet.value/60);
+    }
+
+    
+    
+    
+
+
+
+    </script>
+
+</body>
+</html>
